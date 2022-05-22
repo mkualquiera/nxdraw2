@@ -11,7 +11,7 @@ OBJDIR = build/obj
 # c compiler
 CC ?= clang
 # flags for c compiler
-CFLAGS := $(CFLAGS) -Wall -Wextra -pedantic -std=c11 #-Os
+CFLAGS := $(CFLAGS) -Wall -Wextra -pedantic -std=c11 -fPIC #-Os
 
 # get list of .c files
 C_SOURCES = $(shell find ./src/nxdraw -name "*.c")
