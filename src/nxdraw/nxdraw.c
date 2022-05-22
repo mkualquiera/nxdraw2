@@ -10,7 +10,6 @@
 
 #include "nxdraw/backend/glfw/glfw.h"
 
-#include <bits/types/clock_t.h>
 #include <time.h>
 
 static nxdraw_Screen _screen;
@@ -258,17 +257,17 @@ int nxd_time_sleep(int ms) {
 }
 
 int nxd_time_await_limit(int fps) {
-  static clock_t lastTime = 0;
-  static clock_t dt = 0;
-  static clock_t nowTime = 0;
+  static long lastTime = 0;
+  static long dt = 0;
+  static long nowTime = 0;
 
-  clock_t clocks_per_frame = (CLOCKS_PER_SEC / fps);
+  long clocks_per_frame = (CLOCKS_PER_SEC / fps);
 
   nowTime = clock();
   dt = (nowTime - lastTime);
-  clock_t remain = clocks_per_frame - dt;
+  long remain = clocks_per_frame - dt;
   if (remain > 0) {
-    clock_t sleeptime = remain / (CLOCKS_PER_SEC / 1000);
+    long sleeptime = remain / (CLOCKS_PER_SEC / 1000);
     nxlib_sleep(sleeptime);
 
     dt = ((nowTime + remain) - lastTime);
